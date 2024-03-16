@@ -1,0 +1,43 @@
+@model Lesson.ViewModels.CheckoutOrderVm
+
+@{
+    ViewBag.Title = "Подвердить заказ";
+    Layout = "_Layout";
+}
+
+<h2>Подтвердите заказ на телефон @Model.PhoneName</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Checkout" method="post">
+            <div class="form-group mb-3">
+                <label for="Phone" class="mb-2">Контактный телефон</label>
+                <input asp-for="ContactPhone"
+                       type="text"
+                       class="form-control"
+                       id="Phone"
+                       placeholder="Контактный телефон">
+            </div>
+            <div class="form-group mb-3">
+                <label for="name" class="mb-2">Имя</label>
+                <input asp-for="Name"
+                       type="text"
+                       class="form-control"
+                       id="name"
+                       placeholder="Имя">
+            </div>
+            <div class="form-group mb-3">
+                <label for="address" class="mb-2">Адрес</label>
+                <input asp-for="Address"
+                       type="text"
+                       class="form-control"
+                       id="address"
+                       placeholder="Адрес">
+            </div>
+            <input type="hidden" asp-for="PhoneId" value="@Model.PhoneId">
+            <button type="submit" class="btn btn-outline-info mt-3">
+                Оформить заказ
+            </button>
+        </form>
+    </div>
+</div>

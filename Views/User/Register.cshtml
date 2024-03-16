@@ -1,0 +1,29 @@
+@model Lesson.ViewModels.UserAuthVms.RegisterVm
+
+@{
+    ViewBag.Title = "Регистрация";
+    Layout = "_Layout";
+}
+
+<h2>Регистрация:</h2>
+<div class="text-danger" asp-validation-summary="All"></div>
+<form asp-action="Register" method="post" asp-antiforgery="true">
+    <div>
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input type="email" asp-for="Email">
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input type="password" asp-for="Password">
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ConfirmPassword"></label>
+            <input type="password" asp-for="ConfirmPassword">
+            <span asp-validation-for="ConfirmPassword"></span>
+        </div>
+    </div>
+    <button class="btn btn-dark" type="submit">Зарегистрироваться</button>
+</form>

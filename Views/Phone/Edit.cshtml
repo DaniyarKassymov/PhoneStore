@@ -1,0 +1,21 @@
+@model Lesson.ViewModels.PhoneVms.PhoneFormVm
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Редактирование устройства</h2>
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit" method="post">
+            @{
+                await Html.RenderPartialAsync("PartialViews/PhoneFormPartial", Model);
+            }
+            <input type="hidden" asp-for="Id" value="@Model.Id">
+            <button type="submit" class="btn btn-outline-info mt-3">
+                Редактировать
+            </button>
+        </form>
+    </div>
+</div>

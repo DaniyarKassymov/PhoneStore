@@ -1,0 +1,63 @@
+@model Lesson.ViewModels.PhoneVms.PhonesListVm
+
+@{
+    ViewBag.Title = "Мобильные телефоны";
+    Layout = "_Layout";
+}
+
+<div class="text-center">
+    <h2>Мобильные телефоны</h2>
+</div>
+
+@if (User.IsInRole("admin"))
+{
+    <a asp-action="Add">Добавить смартфон</a>
+}
+
+@if (Model.Phones.Count == 0)
+{
+    <h3> Телефоны еще не добавлены </h3>
+}
+else
+{
+    <table class="table" style="width: 100%">
+        <tr>
+            <th>Id</th>
+            <th>Наименование</th>
+            <th>Компания</th>
+            <th>Стоимость</th>
+            @if (User.IsInRole("user") || User.IsInRole("admin"))
+            {
+                <th>Детали</th>
+            }
+        </tr>
+        @foreach (var phone in Model.Phones)
+        {
+            <tr>
+                <td>@phone.Id</td>
+                <td>@phone.Title</td>
+                <td>@phone.BrandName</td>
+                <td>@phone.Price</td>
+                @if (User.IsInRole("user") || User.IsInRole("admin"))
+                {
+                    <td><a class="btn btn-dark" asp-action="Details" 
+                           asp-route-phoneId="@phone.Id">Детали</a></td>
+                }
+            </tr>
+        }
+    </table>
+     
+    @if (Model.PageVm.HasPreviousPage)
+    {
+        <a class="btn btn-primary" asp-action="Index" asp-route-page="@(Model.PageVm.PageNumber - 1)">
+            Назад
+        </a> 
+    }
+    
+    @if (Model.PageVm.HasNextPage)
+    {
+        <a class="btn btn-primary" asp-action="Index" asp-route-page="@(Model.PageVm.PageNumber + 1)">
+            Вперед
+        </a> 
+    }
+}

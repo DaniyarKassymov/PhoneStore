@@ -1,0 +1,82 @@
+@model Lesson.ViewModels.PhoneVms.PhoneFormVm
+
+
+<div asp-validation-summary="All"></div>
+<div class="form-group mb-3">
+    <label for="brand">Производитель</label>
+    <select asp-for="@Model.BrandId" id="brand" asp-items="@Model.Brands"></select>
+    <span asp-validation-for="BrandId"></span>
+</div>
+<div class="form-group mb-3">
+    <label for="title" class="mb-2">Название *</label>
+    <input asp-for="Title"
+           type="text"
+           value="@Model.Title"
+           class="form-control"
+           id="title"
+           placeholder="Название">
+    <span class="text-danger" asp-validation-for="Title"></span>
+</div>
+<div class="form-group mb-3">
+    <label for="price" class="mb-2">Цена</label>
+    <input asp-for="Price"
+           type="text"
+           value="@Model.Price"
+           class="form-control"
+           id="price"
+           placeholder="Цена">
+    <span class="text-danger" asp-validation-for="Price"></span>
+</div>
+<div class="form-group mb-3">
+    <label for="displayType" class="mb-2">Тип дисплея</label>
+    <input asp-for="DisplayType"
+           type="text"
+           value="@Model.DisplayType"
+           class="form-control"
+           id="displayType"
+           placeholder="Тип дисплея">
+    <span class="text-danger" asp-validation-for="DisplayType"></span>
+    
+</div>
+<div class="form-group mb-3">
+    <label for="ram" class="mb-2">ОЗУ (ГБ)</label>
+    <input asp-for="Ram"
+           type="number"
+           value="@Model.Ram"
+           class="form-control"
+           id="ram"
+           placeholder="ОЗУ">
+</div>
+<div class="form-group mb-3">
+    <label for="capacity" class="mb-2">Емкость аккумулятора</label>
+    <input asp-for="BatteryCapacity"
+           type="number"
+           value="@Model.BatteryCapacity"
+           class="form-control"
+           id="capacity"
+           placeholder="Емкость">
+</div>
+<div class="form-group mb-3">
+    <label for="description" class="mb-2">Описание</label>
+    <input asp-for="Description"
+           type="text"
+           value="@Model.Description"
+           class="form-control"
+           id="description"
+           placeholder="Описание">
+</div>
+<div class="form-group mb-3">
+    <label for="file" class="mb-2">Фото</label>
+    <input asp-for="Photo"
+           type="file"
+           class="form-control"
+           id="file"
+           placeholder="Фото">
+</div>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

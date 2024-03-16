@@ -1,0 +1,42 @@
+@model Lesson.ViewModels.PhoneVms.PhoneDetailsVm
+
+@{
+    ViewBag.Title = "Добавить устройство";
+    Layout = "_Layout";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="~/@Model.PhotoPath" class="img-fluid" alt="Изображение товара">
+        </div>
+        <div class="col-md-6">
+            <h1 class="mb-4">@Model.Brand @Model.Title</h1>
+            <p class="lead">@Model.Description</p>
+            <h2 class="mb-4">Цена: $@Model.Price</h2>
+            <h2 class="mb-4">Емкость аккумулятора: @Model.BatteryCapacity</h2>
+            <h2 class="mb-4">Тип дисплея: @Model.DisplayType</h2>
+            @if (User.IsInRole("user"))
+            {
+                <a asp-controller="Order"
+                   asp-action="Checkout"
+                   asp-route-phoneId="@Model.Id"
+                   class="btn btn-success">
+                    Купить
+                </a>
+            }
+            @if (User.IsInRole("admin"))
+            {
+                <a asp-action="Delete" asp-route-phoneId="@Model.Id"
+                   class="btn btn-danger text-center">
+                    Удалить
+                </a>
+
+                <a asp-action="Edit" asp-route-id="@Model.Id"
+                   class="btn btn-warning text-center">
+                    Редактировать
+                </a>
+            }
+        </div>
+    </div>
+</div>
